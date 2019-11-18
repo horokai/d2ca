@@ -64,6 +64,16 @@ impl D2caUniverse {
         }
     }
 
+    // パラメータ再設定
+    pub fn renew(&mut self, width: u32, height: u32) {
+        self.width = width;
+        self.height = height;
+        self.cells = vec![0; (width * height) as usize];
+        for i in 0..(width * height) {
+            self.cells[i as usize] = if rand::random::<u32>() % 2 == 0 { 0 } else { 1 };
+        }
+    }
+
     // 更新
     pub fn tick(&mut self) {
         let mut next = self.cells.clone();
